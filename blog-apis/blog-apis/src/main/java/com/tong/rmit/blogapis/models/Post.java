@@ -3,28 +3,64 @@ package com.tong.rmit.blogapis.models;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.Date;
 
-@Entity(name = "posts")
+@Entity
+@Table(name = "posts")
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long post_id;
+    private int post_id;
+
+    @Column(name = "post_title", length = 100, nullable = false)
     private String title;
+    @Column(length = 1000)
     private String content;
 
-    @Lob
-    @Type(type ="org.hibernate.type.BinaryType")
-    private byte[] photo;
+    private String imageName;
+
+    private Date addDate;
+
+    @ManyToOne
+    @JoinColumn(name = "cate_id")
+    private Category category;
+
+    @ManyToOne
+    private User user;
 
     public Post(){
 
     }
 
-    public Long getPost_id() {
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Date getAddDate() {
+        return addDate;
+    }
+
+    public void setAddDate(Date addDate) {
+        this.addDate = addDate;
+    }
+
+    public int getPost_id() {
         return post_id;
     }
 
-    public void setPost_id(Long post_id) {
+    public void setPost_id(int post_id) {
         this.post_id = post_id;
     }
 
@@ -44,11 +80,11 @@ public class Post {
         this.content = content;
     }
 
-    public byte[] getPhoto() {
-        return photo;
+    public String getImageName() {
+        return imageName;
     }
 
-    public void setPhoto(byte[] photo) {
-        this.photo = photo;
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 }
