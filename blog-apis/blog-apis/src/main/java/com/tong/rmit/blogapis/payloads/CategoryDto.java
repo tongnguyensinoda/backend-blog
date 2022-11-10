@@ -2,15 +2,19 @@ package com.tong.rmit.blogapis.payloads;
 
 import com.tong.rmit.blogapis.repositories.CategoryRepo;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 public class CategoryDto {
 
     private int cate_id;
-    @NotEmpty
+    @NotBlank
+    @Size(min = 4, message = "min size of category is 4")
     private String cate_title;
 
-    @NotEmpty
+    @NotBlank
+    @Size(min = 10, max = 20, message = "The description should be in 10-20 character")
     private String cate_description;
 
     public CategoryDto(){

@@ -1,6 +1,8 @@
 package com.tong.rmit.blogapis.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "categories")
@@ -14,6 +16,9 @@ public class Category {
 
     @Column(name="description")
     private String cate_description;
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Post> posts = new ArrayList<>();
 
     public Category(){
 
