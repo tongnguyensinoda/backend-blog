@@ -21,6 +21,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Autowired
     private ModelMapper modelMapper;
 
+    // Method - Create a new category
     @Override
     public CategoryDto createCategory(CategoryDto categoryDto) {
         Category category = this.dtoToCategory(categoryDto);
@@ -28,6 +29,7 @@ public class CategoryServiceImpl implements CategoryService {
         return this.categoryToDto(savedCategory);
     }
 
+    // Method - Update a category
     @Override
     public CategoryDto updateCategory(CategoryDto categoryDto, Integer cate_id) {
         Category category = this.categoryRepo.findById(cate_id).orElseThrow(()-> new ResourceNotFoundException("Category", " Id", cate_id));
@@ -40,12 +42,14 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryDto1;
     }
 
+    // Method - Get category by id
     @Override
     public CategoryDto getCategoryById(Integer cate_id) {
         Category category = this.categoryRepo.findById(cate_id).orElseThrow(()-> new ResourceNotFoundException("Category", " Id", cate_id));
         return this.categoryToDto(category);
     }
 
+    // Method - get all categories
     @Override
     public List<CategoryDto> getAllCategories() {
         List<Category> categories = this.categoryRepo.findAll();
@@ -53,6 +57,7 @@ public class CategoryServiceImpl implements CategoryService {
     return categoryDtos;
     }
 
+    // Method - Delete a category
     @Override
     public void deleteCategory(Integer cate_id) {
         Category category = this.categoryRepo.findById(cate_id).orElseThrow(()-> new ResourceNotFoundException("Category", " Id", cate_id));
@@ -60,12 +65,14 @@ public class CategoryServiceImpl implements CategoryService {
 
     }
 
+    // save data from dto to category model
     public Category dtoToCategory(CategoryDto categoryDto){
         Category category = this.modelMapper.map(categoryDto, Category.class);
 
         return category;
     }
 
+    // get data from category model to dto
     public CategoryDto categoryToDto(Category category){
         CategoryDto categoryDto = this.modelMapper.map(category, CategoryDto.class);
 

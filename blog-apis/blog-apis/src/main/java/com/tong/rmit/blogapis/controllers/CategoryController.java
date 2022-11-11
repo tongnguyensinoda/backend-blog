@@ -14,35 +14,37 @@ import java.util.List;
 @RequestMapping("/api/categories")
 public class CategoryController {
 
+
     @Autowired
     private CategoryService categoryService;
 
+    // Get All categories
     @GetMapping("/")
     public ResponseEntity<List<CategoryDto>> getAllCategories(){
         return ResponseEntity.ok(this.categoryService.getAllCategories());
 }
 
-    // Get a user by id
+    // Get a category by id
     @GetMapping("/{cate_id}")
     public ResponseEntity<CategoryDto> getCategoryById(@PathVariable Integer cate_id){
         return ResponseEntity.ok(this.categoryService.getCategoryById(cate_id));
 
     }
 
-    // Create a new user - POST Method
+    // Create a new category - POST Method
     @PostMapping("/")
     public ResponseEntity<CategoryDto> createCategory(@Valid @RequestBody CategoryDto categoryDto) {
         CategoryDto createCategoryDto = this.categoryService.createCategory(categoryDto);
         return new ResponseEntity<>(createCategoryDto, HttpStatus.CREATED);
     }
-    // Update an user - PUT Method
+    // Update a category - PUT Method
     @PutMapping("/{cate_id}")
     public ResponseEntity<CategoryDto> updateCategory(@Valid @PathVariable("cate_id") Integer cate_id, @RequestBody CategoryDto categoryDto){
         CategoryDto updatedCategory = this.categoryService.updateCategory(categoryDto, cate_id);
         return ResponseEntity.ok(updatedCategory);
     }
 
-    // Delete an user - DEL Method
+    // Delete a category - DEL Method
     @DeleteMapping("/{cate_id}")
     public ResponseEntity<ApiResponse> deleteCategory(@PathVariable("cate_id") Integer cate_id){
         this.categoryService.deleteCategory(cate_id);
