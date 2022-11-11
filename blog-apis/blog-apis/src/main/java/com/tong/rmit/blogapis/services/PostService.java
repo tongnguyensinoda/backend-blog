@@ -1,6 +1,7 @@
 package com.tong.rmit.blogapis.services;
 
 import com.tong.rmit.blogapis.payloads.PostDto;
+import com.tong.rmit.blogapis.payloads.PostResponse;
 import com.tong.rmit.blogapis.payloads.UserDto;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public interface PostService {
 
     PostDto getPostById(Integer post_id);
 
-    List<PostDto> getAllPosts();
+    PostResponse getAllPosts(Integer pageNumber, Integer pageSize, String sortBy, String sortDir);
 
     void deletePost(Integer post_id);
 
