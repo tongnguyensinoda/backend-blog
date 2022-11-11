@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/users")
@@ -30,7 +31,6 @@ public class UserController {
     @GetMapping("/{user_id}")
     public ResponseEntity<UserDto> getUserById(@PathVariable Integer user_id){
         return ResponseEntity.ok(this.userService.getUserById(user_id));
-
     }
 
     // Create a new user - POST Method
@@ -39,6 +39,7 @@ public class UserController {
         UserDto createUserDto = this.userService.createUser(userDto);
         return new ResponseEntity<>(createUserDto, HttpStatus.CREATED);
     }
+
     // Update an user - PUT Method
     @PutMapping("/{user_id}")
     public ResponseEntity<UserDto> updateUser(@Valid @PathVariable("user_id") Integer user_id, @RequestBody UserDto userDto){

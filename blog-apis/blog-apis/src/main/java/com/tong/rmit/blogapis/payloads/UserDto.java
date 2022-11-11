@@ -2,8 +2,8 @@ package com.tong.rmit.blogapis.payloads;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.UUID;
 
 public class UserDto {
 
@@ -33,6 +33,8 @@ public class UserDto {
     public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
+
+
 
     public String getName() {
         return name;

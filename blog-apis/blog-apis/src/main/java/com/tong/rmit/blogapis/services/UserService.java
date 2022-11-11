@@ -5,6 +5,7 @@ import com.tong.rmit.blogapis.payloads.UserDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface UserService {
     UserDto createUser(UserDto user);

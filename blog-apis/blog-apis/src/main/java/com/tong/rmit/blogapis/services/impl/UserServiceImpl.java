@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 @Service
 public class UserServiceImpl implements UserService {
@@ -19,10 +20,14 @@ public class UserServiceImpl implements UserService {
     private ModelMapper modelMapper;
     @Override
     public UserDto createUser(UserDto userDto) {
+
         User user = this.dtoToUser(userDto);
         User savedUser = this.userRepo.save(user);
         return this.userToDto(savedUser);
+
     }
+
+
 
     @Override
     public UserDto updateUser(UserDto userDto, Integer user_id) {
@@ -35,9 +40,10 @@ public class UserServiceImpl implements UserService {
 
         User updatedUser = this.userRepo.save(user);
         UserDto userDto1 = this.userToDto(updatedUser);
-
         return userDto1;
     }
+
+
 
     @Override
     public UserDto getUserById(Integer user_id) {
