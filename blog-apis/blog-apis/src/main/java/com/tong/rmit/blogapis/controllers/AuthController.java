@@ -30,8 +30,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<JwtAuthResponse> createToken(
             @RequestBody JwtAuthRequest request
-            ) throws Exception
-    {
+    ) throws Exception {
         this.authenticate(request.getUsername(), request.getPassword());
 
         UserDetails userDetails = this.userDetailsService.loadUserByUsername(request.getUsername());
@@ -43,7 +42,7 @@ public class AuthController {
         return new ResponseEntity<JwtAuthResponse>(response, HttpStatus.OK);
     }
 
-    private void authenticate(String username, String password) throws Exception{
+    private void authenticate(String username, String password) throws Exception {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
         try {
             this.authenticationManager.authenticate(authenticationToken);
@@ -53,7 +52,6 @@ public class AuthController {
 
         }
     }
-
 
 
 }

@@ -35,8 +35,7 @@ public class User implements UserDetails {
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name="user_role",
             joinColumns =@JoinColumn(name="user_id", referencedColumnName = "user_id"),
-            inverseJoinColumns = @JoinColumn(name="role_id", referencedColumnName = "role_id")
-    )
+            inverseJoinColumns = @JoinColumn(name="role_id", referencedColumnName = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
 
@@ -58,15 +57,6 @@ public class User implements UserDetails {
     public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
-
-//
-//    public UUID getUser_id() {
-//        return user_id;
-//    }
-//
-//    public void setUser_id(UUID user_id) {
-//        this.user_id = user_id;
-//    }
 
     public List<Post> getPosts() {
         return posts;
@@ -94,7 +84,8 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<SimpleGrantedAuthority> authories = this.roles.stream().map((role)-> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+        List<SimpleGrantedAuthority> authories = this.roles.stream()
+                .map((role)-> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
         return authories;
     }
 

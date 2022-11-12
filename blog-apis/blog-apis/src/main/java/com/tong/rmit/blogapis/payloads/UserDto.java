@@ -9,14 +9,14 @@ public class UserDto {
 
     private int user_id;
     @NotEmpty
-    @Size(min = 4, message = "Username must be min of 4 characters")
+//    @Size(min = 4, message = "Username must be min of 4 characters")
     private String name;
 
     @Email(message = "Email is not valid")
     private String email;
 
     @NotEmpty
-    @Size(min = 6, max= 15, message = "Username must be min of 4 characters")
+//    @Size(min = 6, max= 15, message = "Username must be min of 4 characters")
     private String password;
 
     @NotEmpty

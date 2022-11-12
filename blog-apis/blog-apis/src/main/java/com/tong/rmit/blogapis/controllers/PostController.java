@@ -27,7 +27,7 @@ public class PostController {
             @RequestParam(value = "pageNumber", defaultValue = Constants.PAGE_NUMBER, required = false) Integer pageNumber,
             @RequestParam(value = "pageSize", defaultValue = Constants.PAGE_SIZE, required = false) Integer pageSize,
             @RequestParam(value = "sortBy", defaultValue = Constants.SORT_BY, required = false) String sortBy,
-            @RequestParam(value = "sortDir", defaultValue = Constants.SPRT_DIR, required = false) String sortDir
+            @RequestParam(value = "sortDir", defaultValue = Constants.SORT_DIR, required = false) String sortDir
 
     ){
         return ResponseEntity.ok(this.postService.getAllPosts(pageNumber, pageSize, sortBy, sortDir));

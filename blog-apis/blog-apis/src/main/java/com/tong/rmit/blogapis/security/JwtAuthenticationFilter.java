@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +35,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String username = null;
         String token = null;
 
-        if(request!=null && requestToken.startsWith("Bearer"))
+        if(requestToken!=null && requestToken.startsWith("Bearer"))
         {
            token = requestToken.substring(7);
            try{
@@ -45,7 +44,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
            catch(IllegalArgumentException e)
            {
                System.out.println("Unable to get Jwt Token");
-
            }
            catch (ExpiredJwtException e)
             {
@@ -54,10 +52,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
            catch (MalformedJwtException e)
            {
                System.out.println("invalid Jwt");
-
            }
-
-
            } else
         {
             System.out.println("Jwt Token does not begin with Bearer");
@@ -78,7 +73,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
         else
         {
-            System.out.println("username is null or tontext is not null");
+            System.out.println("username is null or context is not null");
         }
 
         filterChain.doFilter(request, response);

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.util.List;
 
@@ -20,13 +21,13 @@ public class CategoryController {
 
     // Get All categories
     @GetMapping("/")
-    public ResponseEntity<List<CategoryDto>> getAllCategories(){
+    public ResponseEntity<List<CategoryDto>> getAllCategories() {
         return ResponseEntity.ok(this.categoryService.getAllCategories());
-}
+    }
 
     // Get a category by id
     @GetMapping("/{cate_id}")
-    public ResponseEntity<CategoryDto> getCategoryById(@PathVariable Integer cate_id){
+    public ResponseEntity<CategoryDto> getCategoryById(@PathVariable Integer cate_id) {
         return ResponseEntity.ok(this.categoryService.getCategoryById(cate_id));
 
     }
@@ -37,16 +38,17 @@ public class CategoryController {
         CategoryDto createCategoryDto = this.categoryService.createCategory(categoryDto);
         return new ResponseEntity<>(createCategoryDto, HttpStatus.CREATED);
     }
+
     // Update a category - PUT Method
     @PutMapping("/{cate_id}")
-    public ResponseEntity<CategoryDto> updateCategory(@Valid @PathVariable("cate_id") Integer cate_id, @RequestBody CategoryDto categoryDto){
+    public ResponseEntity<CategoryDto> updateCategory(@Valid @PathVariable("cate_id") Integer cate_id, @RequestBody CategoryDto categoryDto) {
         CategoryDto updatedCategory = this.categoryService.updateCategory(categoryDto, cate_id);
         return ResponseEntity.ok(updatedCategory);
     }
 
     // Delete a category - DEL Method
     @DeleteMapping("/{cate_id}")
-    public ResponseEntity<ApiResponse> deleteCategory(@PathVariable("cate_id") Integer cate_id){
+    public ResponseEntity<ApiResponse> deleteCategory(@PathVariable("cate_id") Integer cate_id) {
         this.categoryService.deleteCategory(cate_id);
         return new ResponseEntity<ApiResponse>(new ApiResponse("Category deleted", true), HttpStatus.OK);
     }

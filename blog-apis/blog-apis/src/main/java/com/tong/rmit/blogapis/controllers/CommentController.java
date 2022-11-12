@@ -20,14 +20,14 @@ public class CommentController {
     public ResponseEntity<CommentDto> createComment(@RequestBody CommentDto comment, @PathVariable Integer post_id)
     {
         CommentDto createComment = this.commentService.createComment(comment, post_id);
-        return new ResponseEntity<CommentDto>(createComment, HttpStatus.CREATED);
+        return new ResponseEntity<>(createComment, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/comments/{comment_id}")
     public ResponseEntity<ApiResponse> deleteComment(@PathVariable Integer comment_id)
     {
         this.commentService.deleteComment(comment_id);
-        return new ResponseEntity<ApiResponse>(new ApiResponse("Comment deleted", true), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse("Comment deleted", true), HttpStatus.OK);
     }
 
 }
